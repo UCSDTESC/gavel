@@ -228,6 +228,7 @@ def item_detail(item_id):
             )
         else:
             skipped = Annotator.query.filter(Annotator.ignore.contains(item))
+        
         return render_template(
             'admin_item.html',
             item=item,
