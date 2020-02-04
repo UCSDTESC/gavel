@@ -55,7 +55,6 @@
           <td>{{ item_counts.get(item.id, 0) }}</td>
           <td>{{ item.viewed | length }}</td>
           <td>{{ skipped.get(item.id, 0) }}</td>
-          <td>{{ absent.get(item.id, 0) }}</td>
           {% if item.track_education %}
             <td>X</td>
           {% else %}
