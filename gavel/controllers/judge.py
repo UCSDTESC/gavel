@@ -120,6 +120,7 @@ def begin():
             elif request.form['action'] == 'Skip':
                 annotator.next = None # will be reset in index
             elif request.form['action'] == 'Absent' :
+                annotator.next.absent.append(annotator)
                 annotator.next = None
             db.session.commit()
     with_retries(tx)

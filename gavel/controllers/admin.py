@@ -45,8 +45,7 @@ def admin():
             if a.id not in viewed[i.id]:
                 skipped[i.id] = skipped.get(i.id, 0) + 1
     for i in items:
-        for a in i.absent:
-            absent[i.id] = absent.get(i.id, 0) + 1
+            absent[i.id] = len(a)
     # settings
     setting_closed = Setting.value_of(SETTING_CLOSED) == SETTING_TRUE
     return render_template(
