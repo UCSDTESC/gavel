@@ -188,4 +188,4 @@ send_stats: null
 # defaults to empty list(no tracks)
 #
 # this setting defines any sub-categories('tracks') that contestants can compete in
-tracks: ["Track A"," Track B","Track C","Track D"]
+tracks: null
