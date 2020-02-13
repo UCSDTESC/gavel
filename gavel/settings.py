@@ -45,7 +45,7 @@ def _bool(truth_value):
         if truth_value.isnumeric():
             return bool(int(truth_value))
         lower = truth_value.lower()
-        return lower.startswith('t') or lower.startswith('y') # accepts things like 'yes', 'True', ...
+        return lower.startswith('t') or lower.startswith                            ('y') # accepts things like 'yes', 'True', ...
     raise ValueError('invalid type for bool coercion')
 
 def _list(item):
@@ -83,3 +83,4 @@ EMAIL_BODY =          c.get('email_body',                                  defau
 SEND_STATS =    _bool(c.get('send_stats',      'SEND_STATS',               default=True))
 USE_SENDGRID =  _bool(c.get('use_sendgrid',    'USE_SENDGRID',             default=False))
 SENDGRID_API_KEY =    c.get('sendgrid_api_key','SENDGRID_API_KEY',         default=None)
+TRACKS =              c.get('tracks',          'TRACKS',                   default=[])

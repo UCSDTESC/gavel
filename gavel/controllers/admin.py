@@ -15,9 +15,7 @@ import urllib.parse
 import xlrd
 
 ALLOWED_EXTENSIONS = set(['csv', 'xlsx', 'xls'])
-TRACKS = [
-    "Education", "Health and Wellness", "Sustainability", "Best Beginner Hack"
-]
+
 pattern = re.compile(r"What it does\s+(.*)\s+")
 
 
@@ -28,6 +26,7 @@ def admin():
     annotators = Annotator.query.order_by(Annotator.id).all()
     items = Item.query.order_by(Item.id).all()
     decisions = Decision.query.all()
+    tracks = settings.TRACKS
     counts = {}
     item_counts = {}
     for d in decisions:
@@ -58,6 +57,7 @@ def admin():
         items=items,
         votes=len(decisions),
         setting_closed=setting_closed,
+        tracks=tracks,  
     )
 
 
@@ -72,7 +72,7 @@ def item():
             for index, row in enumerate(data):
                 if len(row) != 3:
                     return utils.user_error(
-                        'Bad data: row %d has %d elements (expecting 4)' %
+                        'Bad data: row %d has %d elements (expecting 3)' %
                         (index + 1, len(row))
                     )
 
