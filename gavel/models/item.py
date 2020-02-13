@@ -34,7 +34,7 @@ class Item(db.Model):
     sigma_sq = db.Column(db.Float)
 
 
-    def __init__(self, name, location, description, tracks_data = dict({})):
+    def __init__(self, name, location, description):
         self.name = name
         self.location = location
         self.description = description
@@ -42,10 +42,9 @@ class Item(db.Model):
         self.sigma_sq = crowd_bt.SIGMA_SQ_PRIOR
         # If the dictionary, tracks_data, does not have the correct tracks, 
         # default values for the track_data are given
-        if(settings.TRACKS != tracks_data.keys()):
-            tracks_data = {}
-            for track in settings.TRACKS:
-                tracks_data.update({track:0})
+        tracks_data = {}
+        for track in settings.TRACKS:
+            tracks_data[track] = 0
         for track in settings.TRACKS:
             self.__dict__[track] = tracks_data.get(track)
         
