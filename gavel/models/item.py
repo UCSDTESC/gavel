@@ -16,7 +16,6 @@ absent_table = db.Table(
 )
 
 
-
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.Text, nullable=False)
@@ -40,8 +39,7 @@ class Item(db.Model):
         self.description = description
         self.mu = crowd_bt.MU_PRIOR
         self.sigma_sq = crowd_bt.SIGMA_SQ_PRIOR
-        # If the dictionary, tracks_data, does not have the correct tracks, 
-        # default values for the track_data are given
+        # TODO Remove hard coding and add csv reading functionality
         tracks_data = {}
         for track in settings.TRACKS:
             tracks_data[track] = 0
