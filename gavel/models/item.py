@@ -1,6 +1,7 @@
 from gavel.models import db
 import gavel.crowd_bt as crowd_bt
 from sqlalchemy.orm.exc import NoResultFound
+import gavel.settings as settings
 
 view_table = db.Table(
     'view',
@@ -15,6 +16,7 @@ absent_table = db.Table(
 )
 
 
+
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     name = db.Column(db.Text, nullable=False)
@@ -24,28 +26,29 @@ class Item(db.Model):
     viewed = db.relationship('Annotator', secondary=view_table)
     prioritized = db.Column(db.Boolean, default=False, nullable=False)
     absent = db.relationship('Annotator', secondary=absent_table)
-
     # tracks
-    track_education = db.Column(db.Boolean, default=False, nullable=False)
-    track_health = db.Column(db.Boolean, default=False, nullable=False)
-    track_sustainability = db.Column(db.Boolean, default=False, nullable=False)
-    track_beginner = db.Column(db.Boolean, default=False, nullable=False)
+    for track in settings.TRACKS:
+        locals()[track] = db.Column(db.Boolean, default=False, nullable=False)
 
     mu = db.Column(db.Float)
     sigma_sq = db.Column(db.Float)
 
-    def __init__(self, name, location, description, track_education=False,
-                 track_health=False, track_sustainability=False,
-                 track_beginner=False):
+
+    def __init__(self, name, location, description, tracks_data = dict({})):
         self.name = name
         self.location = location
         self.description = description
         self.mu = crowd_bt.MU_PRIOR
         self.sigma_sq = crowd_bt.SIGMA_SQ_PRIOR
-        self.track_education = track_education
-        self.track_health = track_health
-        self.track_sustainability = track_sustainability
-        self.track_beginner = track_beginner
+        # If the dictionary, tracks_data, does not have the correct tracks, 
+        # default values for the track_data are given
+        if(settings.TRACKS != tracks_data.keys()):
+            tracks_data = {}
+            for track in settings.TRACKS:
+                tracks_data.update({track:0})
+        for track in settings.TRACKS:
+            self.__dict__[track] = tracks_data.get(track)
+        
 
     @classmethod
     def by_id(cls, uid):
