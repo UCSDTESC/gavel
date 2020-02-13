@@ -15,13 +15,13 @@
     },
     "description": "An awesome judging system for hackathons",
     "env": {
-        "ADMIN_PASSWORD": "change-this-before-deploying",	        
+        "ADMIN_PASSWORD": "change-this-before-deploying",
         "SECRET_KEY": "randomly-generate-this-before-deploying",
         "DISABLE_EMAIL": "true",
         "EMAIL_FROM": "_unused_",
         "EMAIL_USER": "_unused_",
         "EMAIL_PASSWORD": "_unused_",
-        "IGNORE_CONFIG_FILE": "false"
+        "IGNORE_CONFIG_FILE": "true"
         
     },
     "keywords": [
