@@ -86,6 +86,13 @@ def vote():
             elif request.form['action'] == 'Absent':
                 annotator.next.absent.append(annotator)
                 annotator.ignore.append(annotator.next)
+                if count >= settings.THRESHOLD_ABSENT:      #from here
+                    item_id = request.form['item_id']
+                    target_state = action == 'Disable'
+                    def tx():
+                        Item.by_id(item_id).active = False
+                        db.session.commit()                 #to here
+                    with_retries(tx)
             else:
                 # ignore things that were deactivated in the middle of judging
                 if annotator.prev.active and annotator.next.active:
