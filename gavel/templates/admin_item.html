@@ -82,6 +82,16 @@
           </ul>
         </td>
       </tr>
+      <tr>
+        <th>Marked Absent By</th>
+        <td>
+          <ul>
+            {% for annotator in absent %}
+            <li><a href="{{ url_for('annotator_detail', annotator_id=annotator.id) }}" class="colored">{{ annotator.name | safe }} [{{ annotator.id }}]</a></li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
     </table>
   </div>
 </div>
