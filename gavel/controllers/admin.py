@@ -226,6 +226,7 @@ def item_detail(item_id):
     else:
         assigned = Annotator.query.filter(Annotator.next == item).all()
         viewed_ids = {i.id for i in item.viewed}
+        absent = item.absent
         if viewed_ids:
             skipped = Annotator.query.filter(
                 Annotator.ignore.contains(item) & ~Annotator.id.in_(viewed_ids)
