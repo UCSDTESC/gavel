@@ -189,3 +189,5 @@ send_stats: null
 #
 # this setting defines any sub-categories('tracks') that contestants can compete in
 tracks: null
+
+threshold_absent: 4
