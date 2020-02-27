@@ -84,4 +84,4 @@ SEND_STATS =    _bool(c.get('send_stats',      'SEND_STATS',               defau
 USE_SENDGRID =  _bool(c.get('use_sendgrid',    'USE_SENDGRID',             default=False))
 SENDGRID_API_KEY =    c.get('sendgrid_api_key','SENDGRID_API_KEY',         default=None)
 TRACKS =              c.get('tracks',          'TRACKS',                   default=[])
-THRESHOLD_ABSENT =    c.get('threshold_absent','THRESHOLD_ABSENT',         default=4)
+THRESHOLD_ABSENT =    c.get('threshold_absent','THRESHOLD_ABSENT')
