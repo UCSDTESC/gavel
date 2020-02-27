@@ -22,7 +22,7 @@
         "EMAIL_USER": "_unused_",
         "EMAIL_PASSWORD": "_unused_",
         "IGNORE_CONFIG_FILE": "true",
-        "TRACKS": []
+        "TRACKS": [],
         "THRESHOLD_ABSENT": 1
     },
     "keywords": [

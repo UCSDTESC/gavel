@@ -87,10 +87,7 @@ def vote():
                 annotator.next.absent.append(annotator)
                 annotator.ignore.append(annotator.next)
                 if len(annotator.next.absent) >= settings.THRESHOLD_ABSENT:      
-                    def tx():
-                        Item.by_id(item_id).active = False
-                        db.session.commit()
-                    with_retries(tx)
+                    Item.by_id(item_id).active = False
             else:
                 # ignore things that were deactivated in the middle of judging
                 if annotator.prev.active and annotator.next.active:
@@ -127,6 +124,8 @@ def begin():
             elif request.form['action'] == 'Absent' :
                 annotator.next.absent.append(annotator)
                 annotator.next = None
+                if len(annotator.next.absent) >= settings.THRESHOLD_ABSENT:      
+                    Item.by_id(item_id).active = False
             db.session.commit()
     with_retries(tx)
     return redirect(url_for('index'))
