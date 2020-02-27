@@ -238,7 +238,8 @@ def item_detail(item_id):
             'admin_item.html',
             item=item,
             assigned=assigned,
-            skipped=skipped
+            skipped=skipped,
+            absent=absent
         )
 
 
