@@ -43,8 +43,6 @@ def admin():
         for i in a.ignore:
             if a.id not in viewed[i.id]:
                 skipped[i.id] = skipped.get(i.id, 0) + 1
-    for i in items:
-        absent[i.id] = len(i.absent)
     # settings
     setting_closed = Setting.value_of(SETTING_CLOSED) == SETTING_TRUE
     return render_template(
@@ -53,7 +51,6 @@ def admin():
         counts=counts,
         item_counts=item_counts,
         skipped=skipped,
-        absent=absent,
         items=items,
         votes=len(decisions),
         setting_closed=setting_closed,
