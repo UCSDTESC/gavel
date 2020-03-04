@@ -23,7 +23,11 @@
         "EMAIL_PASSWORD": "_unused_",
         "IGNORE_CONFIG_FILE": "true",
         "TRACKS": [],
+<<<<<<< HEAD
         "THRESHOLD_ABSENT": 1=4
+=======
+        "THRESHOLD_ABSENT": 2
+>>>>>>> 193c8c15a75bd580d301c9d875600de2ed0f5891
     },
     "keywords": [
         "gavel",

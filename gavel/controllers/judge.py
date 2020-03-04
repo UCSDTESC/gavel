@@ -86,7 +86,6 @@ def vote():
             elif request.form['action'] == 'Absent':
                 annotator.next.absent.append(annotator)
                 annotator.ignore.append(annotator.next)
-                print("sssss" + str(settings.THRESHOLD_ABSENT))
                 if len(annotator.next.absent) >= settings.THRESHOLD_ABSENT:      
                     annotator.next.active = False
             else:
@@ -124,7 +123,6 @@ def begin():
                 annotator.next = None # will be reset in index
             elif request.form['action'] == 'Absent' :
                 annotator.next.absent.append(annotator)
-                print("rrrrrrrr" + str(settings.THRESHOLD_ABSENT))
                 if len(annotator.next.absent) >= settings.THRESHOLD_ABSENT:
                    annotator.next.active = False
                 annotator.next = None
