@@ -33,16 +33,21 @@ class Item(db.Model):
     sigma_sq = db.Column(db.Float)
 
 
-    def __init__(self, name, location, description):
+    def __init__(self, name, location, description, desired_prizes):
         self.name = name
         self.location = location
         self.description = description
         self.mu = crowd_bt.MU_PRIOR
         self.sigma_sq = crowd_bt.SIGMA_SQ_PRIOR
+        
+        tracks_set = set(desired_prizes)
         # TODO Remove hard coding and add csv reading functionality
         tracks_data = {}
         for track in settings.TRACKS:
-            tracks_data[track] = 0
+            if track in tracks_set:
+                tracks_data[track] = 1
+            else:
+                tracks_data[track] = 0
         for track in settings.TRACKS:
             self.__dict__[track] = tracks_data.get(track)
         

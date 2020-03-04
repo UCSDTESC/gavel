@@ -33,6 +33,7 @@
           <th data-sort-method="number">Votes</th>
           <th data-sort-method="number">Seen</th> 
           <th data-sort-method="number" data-sort-order="desc">Skipped</th>
+          <th data-sort-method="number" data-sort-order="desc">Absent</th> 
           {% for track in tracks %}
             <th data-sort-method="caseInsensitiveSort">{{track | safe}}</th>
           {% endfor %}
@@ -53,6 +54,7 @@
           <td>{{ item_counts.get(item.id, 0) }}</td>
           <td>{{ item.viewed | length }}</td>
           <td>{{ skipped.get(item.id, 0) }}</td>
+          <td>{{ absent.get(item.id, 0) }}</td>
           {% for track in tracks %} 
             {% if item.__dict__[track] == true %}
               <td>X</td>
