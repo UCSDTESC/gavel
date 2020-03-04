@@ -53,7 +53,6 @@
           <td>{{ item.sigma_sq | round(4) }}</td>
           <td>{{ item_counts.get(item.id, 0) }}</td>
           <td>{{ item.viewed | length }}</td>
-          <td>{{ item.absent | length }}</td>
           <td>{{ skipped.get(item.id, 0) }}</td>
           <td>{{ absent.get(item.id, 0) }}</td>
           {% for track in tracks %} 
