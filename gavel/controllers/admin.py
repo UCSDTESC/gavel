@@ -78,7 +78,7 @@ def item():
 
             def tx():
                 for row in data:
-                    _item = Item(*(row[:3]), row[3:])
+                    _item = Item(*(row[:3]), set(row[3:]))
                     db.session.add(_item)
                 db.session.commit()
             with_retries(tx)

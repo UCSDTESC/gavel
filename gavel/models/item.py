@@ -39,15 +39,9 @@ class Item(db.Model):
         self.description = description
         self.mu = crowd_bt.MU_PRIOR
         self.sigma_sq = crowd_bt.SIGMA_SQ_PRIOR
-        
-        tracks_set = set(desired_prizes)
-        # TODO Remove hard coding and add csv reading functionality
         tracks_data = {}
         for track in settings.TRACKS:
-            if track in tracks_set:
-                tracks_data[track] = 1
-            else:
-                tracks_data[track] = 0
+            tracks_data[track] = track in desired_prizes
         for track in settings.TRACKS:
             self.__dict__[track] = tracks_data.get(track)
         
